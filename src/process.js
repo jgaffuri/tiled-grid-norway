@@ -3,10 +3,11 @@
 //See https://observablehq.com/d/62acd402b96476b9
 //https://uwdata.github.io/arquero/api/
 
-//import {aq, op} from "arquero"
 const aq = require("arquero");
 const { writeFileSync } = require('fs');
 const { execSync } = require("child_process");
+
+
 
 const prepareCSV = async () => {
 
@@ -37,6 +38,10 @@ const prepareCSV = async () => {
 
 }
 
+//prepareCSV()
+
+
+
 const tiling = async () => {
 
     //gothrough several aggregation levels
@@ -51,6 +56,4 @@ const tiling = async () => {
     }
 }
 
-
-//prepareCSV()
 tiling()

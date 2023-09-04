@@ -5,9 +5,10 @@
 
 //import {aq, op} from "arquero"
 const aq = require("arquero");
-const fs = require('fs');
+const { writeFileSync } = require('fs');
+const { execSync } = require("child_process");
 
-(async () => {
+const prepareCSV = async () => {
 
     console.log("Load CSV files")
 
@@ -20,16 +21,36 @@ const fs = require('fs');
         tables.push(dt)
     }
 
+
     console.log("Joins")
 
     let out = tables[0]
-    for (let i = 1; i <= 20; i++) {
+    for (let i = 1; i <= 21; i++) {
         out = out.join_full(tables[i], "SSBID0250M")
     }
     console.log(out.columnNames())
 
     console.log("Save")
-    const csv = aq.table(out).toCSV()
-    fs.writeFileSync("./input/out.csv", csv);
 
-})()
+    const csv = aq.table(out).toCSV()
+    writeFileSync("./input/out.csv", csv);
+
+}
+
+const tiling = async () => {
+
+    //gothrough several aggregation levels
+    for (let a of [1, 2, 4, 8, 20, 40, 80, 200, 400]) {
+
+        console.log("Tiling to " + (a * 250) + "m")
+
+        execSync(
+            'gridtiler -i ./input/out.csv -r 250 -c 3035 -x 1900000 -y 6400000 -p "return {x:+c.SSBID0250M.substring(0,7), y:+c.SSBID0250M.substring(7,14)};" -m "delete c.SSBID0250M" -a ' + a + ' -o ./out/pop/' + (a * 250) + 'm/ -e parquet'
+            , { stdio: 'inherit' }
+        );
+    }
+}
+
+
+//prepareCSV()
+tiling()

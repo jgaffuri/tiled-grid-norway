@@ -23,7 +23,7 @@ const fs = require('fs');
     console.log("Joins")
 
     let out = tables[0]
-    for (let i = 1; i <= 15; i++) {
+    for (let i = 1; i <= 20; i++) {
         out = out.join_full(tables[i], "SSBID0250M")
     }
     console.log(out.columnNames())

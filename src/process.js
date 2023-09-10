@@ -18,7 +18,7 @@ const prepareCSV = async () => {
     for (let y = 2001; y <= 2022; y++) {
         let dt = await aq.loadCSV("./input/NOR0250M_POP_" + y + ".csv", { delimiter: ";" });
         //rename population column
-        dt = dt.rename({ "pop_tot": "pop_" + y })
+        dt = dt.rename({ "pop_tot": "y" + y })
         tables.push(dt)
     }
 
@@ -42,7 +42,7 @@ const prepareCSV = async () => {
 
 
 
-const tiling = async () => {
+const tiling = () => {
 
     //gothrough several aggregation levels
     for (let a of [1, 2, 4, 8, 20, 40, 80, 200, 400]) {
@@ -50,7 +50,7 @@ const tiling = async () => {
         console.log("Tiling to " + (a * 250) + "m")
 
         execSync(
-            'gridtiler -i ./input/out.csv -r 250 -c 3035 -x 1900000 -y 6400000 -p "return {x:+c.SSBID0250M.substring(0,7), y:+c.SSBID0250M.substring(7,14)};" -m "delete c.SSBID0250M" -a ' + a + ' -o ./out/pop/' + (a * 250) + 'm/ -e parquet'
+            'gridtiler -i ./input/out.csv -r 250 -c 3035 -x 1900000 -y 6400000 -p "return {x:+c.SSBID0250M.substring(0,7), y:+c.SSBID0250M.substring(7,14)};" -m "delete c.SSBID0250M" -a ' + a + ' -o ./out/popcsv/' + (a * 250) + 'm/ -e csv -t 64'
             , { stdio: 'inherit' }
         );
     }

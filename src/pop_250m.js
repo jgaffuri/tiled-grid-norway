@@ -50,7 +50,7 @@ const tiling = () => {
         console.log("Tiling to " + (a * 250) + "m")
 
         execSync(
-            'gridtiler -i ./input/out.csv -r 250 -c 25833 -x 1900000 -y 6400000 -p "return {x:+c.SSBID0250M.substring(0,7), y:+c.SSBID0250M.substring(7,14)};" -m "delete c.SSBID0250M" -a ' + a + ' -o ./out/popcsv/' + (a * 250) + 'm/ -e csv -t 32'
+            'gridtiler -i ./input/out_pop_250m.csv -r 250 -c 25833 -x 1900000 -y 6400000 -p "return {x:+c.SSBID0250M.substring(0,7), y:+c.SSBID0250M.substring(7,14)};" -m "delete c.SSBID0250M" -a ' + a + ' -o ./out/popcsv/' + (a * 250) + 'm/ -e csv -t 32'
             , { stdio: 'inherit' }
         );
     }

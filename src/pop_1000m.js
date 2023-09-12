@@ -38,8 +38,7 @@ const prepareCSV = async (year) => {
 }
 
 //prepare
-for (let y = 2001; y <= 2019; y++)
-    prepareCSV(y)
+//for (let y = 2001; y <= 2019; y++) prepareCSV(y)
 
 
 
@@ -58,4 +57,5 @@ const tiling = (year) => {
     }
 }
 
-//tiling(2019)
+//tiling
+for (let y = 2001; y <= 2019; y++) tiling(y)

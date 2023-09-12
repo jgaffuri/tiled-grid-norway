@@ -28,7 +28,7 @@ const prepareCSV = async (year) => {
     //rename columns
     dt = dt.rename({ "pop_tot": "p", "pop_mal": "m", "pop_fem": "f" })
 
-    console.log(dt.print());
+    //console.log(dt.print());
 
     //console.log(dt.columnNames())
 

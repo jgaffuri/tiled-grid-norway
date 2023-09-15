@@ -4,6 +4,6 @@ This repository contains code and output data for Norway gridded statistics prep
 
 Input data from: https://www.ssb.no/natur-og-miljo/areal/artikler/kart-og-geodata-fra-ssb
 
-Launch data preparation with: `node ./src/process.js`
+Launch various data preparation scripts with: `node ./src/pop_*.js`
 
-[Gridtiler](https://github.com/eurostat/gridtiler) is required: Just install it with `npm install gridtiler -g` (with `sudo` for Linux users).
+[Gridtiler](https://github.com/eurostat/gridtiler) is required: Install it simply with `npm install gridtiler -g` (with `sudo` for Linux users).

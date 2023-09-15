@@ -15,18 +15,8 @@ const prepareCSV = async (year) => {
     //load files
     let dt = await aq.loadCSV("./input/pop_250m/NOR0250M_POP_" + year + ".csv", { delimiter: ";" });
 
-    //rename population column
-    //dt = dt.rename({ "pop_tot": "y" + y })
-
-    dt = dt.derive({
-        ta: aq.escape(d => +(d.pop_tot * +d.pop_ave2.replace(",", ".")).toFixed(1))
-    });
-
-    //keep only relevant columns
-    dt = dt.select("SSBID1000M", "pop_tot", "pop_mal", "pop_fem", "ta")
-
     //rename columns
-    dt = dt.rename({ "pop_tot": "p", "pop_mal": "m", "pop_fem": "f" })
+    dt = dt.rename({ "pop_tot": "p" })
 
     //console.log(dt.print());
 
@@ -38,7 +28,7 @@ const prepareCSV = async (year) => {
 }
 
 //prepare
-for (let y = 2001; y <= 2019; y++) prepareCSV(y)
+for (let y = 2001; y <= 2022; y++) prepareCSV(y)
 
 
 

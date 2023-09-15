@@ -35,7 +35,7 @@ const tiling = (year) => {
         console.log("Tiling " + year + " to " + a + "m")
 
         execSync(
-            'gridtiler -i ./input/out_pop_250m_' + year + '.csv -r 250 -c 25833 -x 1900000 -y 6400000 -p "return {x:+c.SSBID1000M.substring(0,7), y:+c.SSBID1000M.substring(7,14)};" -m "delete c.SSBID1000M" -a ' + a + ' -o ./out/pop' + year + 'csv/' + (a * 250) + 'm/ -e csv -t 128'
+            'gridtiler -i ./input/out_pop_250m_' + year + '.csv -r 250 -c 25833 -x 1900000 -y 6400000 -p "return {x:+c.SSBID0250M.substring(0,7), y:+c.SSBID0250M.substring(7,14)};" -m "delete c.SSBID0250M" -a ' + a + ' -o ./out/pop' + year + 'csv/' + (a * 250) + 'm/ -e csv -t 128'
             , { stdio: 'inherit' }
         );
     }

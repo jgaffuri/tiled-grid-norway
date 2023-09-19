@@ -32,7 +32,7 @@ const tiling = (year) => {
     //gothrough several aggregation levels
     for (let a of year < 2020 ? [1, 2] : [1, 2, 4, 8, 20, 40, 80, 200, 400]) {
 
-        console.log("Tiling " + year + " to " + a + "m")
+        console.log("Tiling " + year + " to " + (a * 250) + "m")
 
         execSync(
             'gridtiler -i ./input/out_pop_250m_' + year + '.csv -r 250 -c 25833 -x 1900000 -y 6400000 -p "return {x:+c.SSBID0250M.substring(0,7), y:+c.SSBID0250M.substring(7,14)};" -m "delete c.SSBID0250M" -a ' + a + ' -o ./out/pop' + year + 'csv/' + (a * 250) + 'm/ -e csv -t 128'
